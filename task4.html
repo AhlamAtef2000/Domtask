@@ -1,76 +1,200 @@
+<!-- <!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جدول ديناميكي مع بحث</title>
+    <style>
+        h2 {
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        tr.highlight {
+            background-color: yellow; /* تمييز النص المطابق */
+        }
+    </style>
+</head>
+<body>
+    <h2>جدول ديناميكي مع بحث</h2>
+
+    <input type="text" id="searchInput" placeholder="ابحث في الجدول...">
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>الاسم</th>
+                <th>المدينة</th>
+                <th>العمر</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>أحمد</td>
+                <td>القاهرة</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td>مريم</td>
+                <td>الإسكندرية</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>علي</td>
+                <td>الجيزة</td>
+                <td>28</td>
+            </tr>
+            <tr>
+                <td>سارة</td>
+                <td>أسوان</td>
+                <td>22</td>
+            </tr>
+            <tr>
+                <td>محمد</td>
+                <td>طنطا</td>
+                <td>35</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>const searchInput = document.getElementById("searchInput");
+        const dataTable = document.getElementById("dataTable");
+        const tableRows = dataTable.getElementsByTagName("tr");
+        
+        // إضافة مستمع حدث لحقل البحث
+        searchInput.addEventListener("input", function() {
+            const searchTerm = searchInput.value.toLowerCase();  // تحويل النص المدخل إلى حروف صغيرة للمقارنة
+        
+            // المرور على كل الصفوف
+            for (let i = 1; i < tableRows.length; i++) {  // بدءًا من i=1 لتجاهل رأس الجدول
+                let row = tableRows[i];
+                let cells = row.getElementsByTagName("td");  // الحصول على الخلايا في الصف
+                let rowText = "";
+                
+                // جمع النصوص من كل الخلايا في الصف
+                for (let j = 0; j < cells.length; j++) {
+                    rowText += cells[j].textContent.toLowerCase();  // إضافة النصوص مع تحويلها لحروف صغيرة
+                }
+        
+                // التحقق إذا كان النص المدخل موجودًا في الصف
+                if (rowText.includes(searchTerm)) {
+                    row.style.display = "";  // عرض الصف إذا كان يحتوي على النص
+                    highlightMatchingText(row, searchTerm);  // تمييز النص المطابق
+                } else {
+                    row.style.display = "none";  // إخفاء الصف إذا لم يحتوي على النص
+                }
+            }
+        });
+        
+        // دالة لتمييز النص المطابق في الجدول
+        function highlightMatchingText(row, searchTerm) {
+            const cells = row.getElementsByTagName("td");
+        
+            // المرور على كل الخلايا في الصف
+            for (let i = 0; i < cells.length; i++) {
+                let cellText = cells[i].textContent;
+                
+                // إزالة أي تمييز سابق
+                cells[i].innerHTML = cellText;
+        
+                // التحقق إذا كان النص يحتوي على الكلمة المدخلة
+                if (cellText.toLowerCase().includes(searchTerm)) {
+                    const regex = new RegExp(searchTerm, "gi");  // تعبير منتظم للبحث عن النص
+                    cells[i].innerHTML = cellText.replace(regex, match => `<span class="highlight">${match}</span>`);  // تمييز النص
+                }
+            }
+        }</script>
+
+</body>
+<!-- </html>  -->
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Exercise #6: Input check for minimmum number of charecter should be 6 and password match in both input </title>
-    <style>
-        * {
-            font-family: Arial, sans-serif;
-        }
-
-        .err {
-            color: red;
-            font-size: 0.7em;
-        }
-    </style>
-    <script>
-        function validateForm(event) {
-
-            // تهذه الوظيفة تمنع النموذج من إرسال البيانات إلى الخادم مباشرة، بحيث يمكن التحقق من صحة البيانات أولاً..preventDefault();
-            let password1 = document.getElementById("password1").value;
-            let password2 = document.getElementById("password2").value;
-
-            let pw1Check = document.getElementById("pw1_check");
-            let pw2Check = document.getElementById("pw2_check");
-
-            let isValid = true; 
-            if (password1.length < 6) {
-                pw1Check.textContent = "Password must be at least 6 characters.";
-                isValid = false;
-            } else {
-                pw1Check.textContent = ""; 
-            }
-
-            if (password1 !== password2) {
-                pw2Check.textContent = "Passwords do not match.";
-                isValid = false;
-            } else {
-                pw2Check.textContent = ""; 
-            }
-            if (isValid) {
-                alert("Form submitted successfully!");
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            let form = document.forms["pw"];
-            form.addEventListener("submit", validateForm);
-        });
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Dynamic Table Filter</title>
+    <link rel="stylesheet" href="text.css">
 </head>
 <body>
-
-<form name="pw">
+    <div class="container">
+    <div class="search"> 
+    <h1>Search Bar !</h1>
+    <input type="search" value="" id="input" placeholder="Search Here ..." onkeyup="myFun()">
+    <!-- //onkeyup الحدث onkeyup في HTML هو حدث يحدث عندما يرفع المستخدم
+    إصبعه عن مفتاح بعد الضغط عليه في عنصر إدخال مثل input أو textarea. هذا الحدث يُستخدم بشكل رئيسي لتنفيذ إجراءات معينة
+    بعد إدخال المستخدم للنص في الوقت الفعلي
+    (بدون الحاجة للضغط على زر إرسال أو حفظ).
+    </div> -->
+    </div>
+    <div class="head">
+        <h3>NAME</h3>
+        <h3>Degree</h3>
+        <h3>Profession</h3>
+    </div>
+    
     <table>
-        <tr>
-            <td>Password (min 6 characters):</td>
-            <td><input type="password" name="password1" id="password1" size="10" placeholder="Password"></td>
-            <td>
-                <div id="pw1_check" class="err"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>Repeat password:</td>
-            <td><input type="password" name="password2" id="password2" size="10" placeholder="Password"></td>
-            <td>
-                <div id="pw2_check" class="err"></div>
-            </td>
-        </tr>
+    <tr>
+        <td>Ali</td>
+        <td>B-Tech</td>
+        <td>Software Engineer</td>
+    </tr>
+    
+    <tr>
+        <td>layan</td>
+        <td>B-Tech</td>
+        <td>Software Engineer</td>
+    </tr>
+
+
+    <tr>
+        <td>Ansam</td>
+        <td>B-Tech</td>
+        <td>Software Engineer</td>
+    </tr>
+    
+    <tr>
+        <td>Alia</td>
+        <td>B-Tech</td>
+        <td>Software Engineer</td>
+    </tr>
+    
+    <tr>
+        <td> Raneem</td>
+        <td>B-Tech</td>
+        <td>Software Engineer</td>
+    </tr>
+
+    <tr>
+        <td> Sufyan</td>
+        <td>B-Tech</td>
+        <td> Engineer</td>
+    </tr>
     </table>
-
-    <input type="submit" value="Submit" id="submitBtn"/>
-</form>
-
+    </div>
+    <script src="text.js"></script>
 </body>
 </html>
-

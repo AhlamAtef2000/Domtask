@@ -1,65 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <title>Exercise #3: Formatting text</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Countdown Timer</title>
     <style>
-        div {
-            width: 600px;
-            height: 100px;
-            border: 1px solid black;
-            margin-top: 10px;
+        h2 {
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    
+        p {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-<form name="form">
-    <select name="font_family" id="font_family">
-        <option value="Arial" selected>Arial</option>
-        <option value="Verdana">Verdana</option>
-        <option value="Helvetica">Helvetica</option>
-        <option value="Times New Roman">Times New Roman</option>
-        <option value="Courier New">Courier New</option>
-    </select>
-    <select name="font_size" id="font_size">
-        <option value="8pt">8pt</option>
-        <option value="10pt">10pt</option>
-        <option value="12pt" selected>12pt</option>
-        <option value="14pt">14pt</option>
-        <option value="16pt">16pt</option>
-    </select>
-    <label>Italic <input type="checkbox" name="font_italic" id="font_italic"></label>
-    <label>Bold <input type="checkbox" name="font_bold" id="font_bold"></label>
-    <label>Underline <input type="checkbox" name="font_underline" id="font_underline"></label>
-</form>
 
-<div id="text">The quick brown fox jumps over the lazy dog</div>
+    <h2> Countdown Timer  </h2>
 
+    <!-- <label for="timerInput">Enter the time</label> -->
+    <input type="number" id="timerInput" placeholder="Enter the time in seconds">
+    <button id="startTimerBtn">StartTimer</button>
+    <p id="countdownDisplay"></p>
 
-<script>
-// updateTextStyle()  الدالة هي التي تقوم بتحديث تنسيق النص بناءً على اختيارات المستخدم.
-    function updateTextStyle() {
+    <script >
 
-        var text = document.getElementById('text');
-        
-        var fontFamily = document.getElementById('font_family').value;
-        var fontSize = document.getElementById('font_size').value;
-        var isItalic = document.getElementById('font_italic').checked;
-        var isBold = document.getElementById('font_bold').checked;
-        var isUnderline = document.getElementById('font_underline').checked;
-        
-        text.style.fontFamily = fontFamily;
-        text.style.fontSize = fontSize;
-        text.style.fontStyle = isItalic ;
-        text.style.fontWeight = isBold ? 'bold' : 'normal';
-        text.style.textDecoration = isUnderline ? 'underline' : 'none';
+// الحصول على العناصر من HTML
+const timerInput = document.getElementById("timerInput");
+const startTimerBtn = document.getElementById("startTimerBtn");
+const countdownDisplay = document.getElementById("countdownDisplay");
+// وظيفة لبدء العد التنازلي
+    startTimerBtn.addEventListener("click", function() {
+    let timeLeft = parseInt(timerInput.value);  // قراءة الوقت من حقل الإدخال
+    // isNaNتُستخدم للتحقق مما إذا كانت القيمة المُدخلة ليست رقمًا. 
+    if (isNaN(timeLeft) || timeLeft <= 0)  {
+        alert("please enetr a vaild number tempreature");
+        return;
     }
+//setInterval دالة تقيس بالملي ثانية
+    // تحديث العد التنازلي كل ثانية
+    const timerInterval = setInterval(function() {
+        countdownDisplay.textContent = timeLeft + " second";  // عرض الوقت المتبقي
+        
+        timeLeft--;  // تقليل الوقت بمقدار ثانية
+        
+        if (timeLeft < 0) {
+            clearInterval(timerInterval);  // إيقاف العد التنازلي عندما يصل إلى صفر
+            countdownDisplay.textContent = "Time's up!";  // عرض رسالة "Time's up!"
+        }
+    }, 1000); 
+});
 
-    document.getElementById('font_family').addEventListener('change', updateTextStyle);
-    document.getElementById('font_size').addEventListener('change', updateTextStyle);
-    document.getElementById('font_italic').addEventListener('change', updateTextStyle);
-    document.getElementById('font_bold').addEventListener('change', updateTextStyle);
-    document.getElementById('font_underline').addEventListener('change', updateTextStyle);
-</script>
+
+    </script>
 </body>
 </html>
+
+<!-- 
+حل آخر
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h3> Countdown Timer </h3>
+    <input id="timer" type="text" size="20" placeholder="Enter seconds">
+    <input type="button" onclick="countdown ()" value="Start Timer">
+    <p id="placetimer"></p>
+
+
+    <script>
+        let x ;
+function countdown (){
+    clearInterval(x);
+const timer = document.getElementById("timer");
+const placetimer = document.getElementById("placetimer");
+let z = timer.value;
+
+if(isNaN(z) || z <= 0){
+    placetimer.textContent="Please enter a valid duration in seconds";
+    return;
+
+}
+
+placetimer.textContent=z +" seconds";
+ x = setInterval(() =>{
+   z --;
+if(z > 0 ){
+placetimer.textContent=z +" seconds";
+}else{
+
+   placetimer.textContent = "time is up";
+}
+
+
+}
+
+
+,1000);
+
+
+
+}
+
+
+
+
+
+
+
+    </script>
+</body>
+</html> -->
