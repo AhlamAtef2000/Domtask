@@ -1,0 +1,77 @@
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercise#2</title>
+<style>
+.square {
+    width:150px;
+    height:15vh;
+    margin: 10px;
+    background-color: lightgray;
+    border: 1px solid black;
+    }
+</style>
+</head>
+<body>
+
+
+
+<div class="square" onclick="changeColor(this)"></div>
+
+<script>
+    
+    function changeColor(square) {
+    
+    const randomColor = getRandomColor();
+    square.style.backgroundColor = randomColor;
+    }
+
+
+    function getRandomColor() {
+    const randomColor = "#" + Math.floor(Math.random() * 16777216).toString(16);
+    return randomColor.padStart(7, "0");}
+</script>
+
+</body>
+</html>
+<!-- Math.random() * 16777216: يقوم بتوليد عدد عشوائي بين 0 و 16777215 (أكبر قيمة يمكن أن يتم تمثيلها في اللون الـ hex). -->
+<!-- Math.floor(): يحول العدد العشوائي إلى عدد صحيح. -->
+<!-- .toString(16): يحول العدد إلى تمثيل hexadecimal. -->
+<!-- padStart(7, "0"): يضيف أصفارًا في البداية إذا كانت النتيجة تحتوي على عدد أقل من 6 خانات، لضمان أن الكود النهائ
+<html lang="en">ي يحتوي دائمًا على 6 خانات بعد الـ #. -->
+<!-- حل آخر -->
+<!-- <!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise #2: Changing box color on click</title>
+    <style>
+        #mydiv {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        /* TODO: write JS code here */
+    </script>
+</head>
+<body>
+<div onclick="changecolor()" id="mydiv"></div>
+
+<script>
+
+let array=["blue","pink","red"];
+let num=0;
+function changecolor(){
+let result=document.getElementById("mydiv");
+result.style.backgroundColor=array[num];
+num=(num+1)% array.length;
+}
+
+
+
+
+</script>
+</body>
+</html> -->

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise#1</title>
+</head>
+<body>
+<!-- onmouseover="mOver(this)": هذه الحدث تُنفذ دالة 
+mOver() عندما يقوم المستخدم بالتمرير فوق العنصر. -->
+
+
+<!-- onmouseout="mOut(this)": هذا الحدث تُنفذ دالة 
+mOut() عندما يخرج المؤشر من العنصر. -->
+<div onmouseover="mOver(this)" onmouseout="mOut(this)" 
+style="background-color:yellow;width:200px;height:10px;padding:20px;
+border:1px solid black;font-size:20px;
+font-size:25px;  text-align: center; ">
+<b>Hello World</b></div>
+    <script>
+    function mOver(obj) {
+obj.innerHTML = "<b>Can I help you</b>"
+// 
+// obj.style.color="green";
+// تعديل على العنصر
+}
+
+function mOut(obj) {
+obj.innerHTML = " <b>Hello World </b>";
+// obj.style.color="black"
+}
+    </script>
+</body>
+</html> 
+
+
+<!--   حل آخر باستخدام الdiv id
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise #1: Changing the text in the div when mouse over and return it back when mouse out</title>
+    <style>
+        #mydiv {
+            width: 300px;
+            height: 50px;
+            line-height: 50px;  /* for vertical alignment of text */
+            text-align: center;
+            border: 1px solid black;
+            background-color: yellow;
+            font-size: 2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div id="mydiv" onmouseover="mover()" onmouseout="mout()">Hello world</div>
+
+<script>
+    function mover() {
+        document.getElementById("mydiv").innerHTML='Can I Help You'
+
+    }
+    function mout() {
+        document.getElementById("mydiv").innerHTML='Hello World'
+    }
+
+</script>
+
+</body>
+</html> -->
